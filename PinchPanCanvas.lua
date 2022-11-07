@@ -6,6 +6,42 @@ function PinchPanCanvas:init(x)
    self.offsetDamping = 30
    self.scale = 1
    self.angle = 0
+   self.allowPanX = true
+   self.allowPanY = true
+   self.allowZoom = true
+   self.allowRotate = true
+end
+
+function PinchPanCanvas:disablePanningX()
+   self.allowPanX = false
+end
+
+function PinchPanCanvas:enablePanningX()
+   self.allowPanX = true
+end
+
+function PinchPanCanvas:disablePanningY()
+   self.allowPanY = false
+end
+
+function PinchPanCanvas:enablePanningY()
+   self.allowPanY = true
+end
+
+function PinchPanCanvas:disableZooming()
+   self.allowZoom = false
+end
+
+function PinchPanCanvas:enableZooming()
+   self.allowZoom = true
+end
+
+function PinchPanCanvas:disableRotation()
+   self.allowRotate = false
+end
+
+function PinchPanCanvas:enableRotation()
+   self.allowRotate = true
 end
 
 function PinchPanCanvas:update()
@@ -66,7 +102,8 @@ function PinchPanCanvas:removeGesture()
 end
 
 function PinchPanCanvas:setOffset(newOffset)
-   self.offset = newOffset
+   if self.allowPanX then self.offset.x = newOffset.x end
+   if self.allowPanY then self.offset.y = newOffset.y end
 end
 
 function PinchPanCanvas:adjustOffset(deltaOffset)
@@ -74,10 +111,12 @@ function PinchPanCanvas:adjustOffset(deltaOffset)
 end
 
 function PinchPanCanvas:setScale(newScale)
+   if not self.allowZoom then return end
    self.scale = newScale
 end
 
 function PinchPanCanvas:setAngle(newAngle)
+   if not self.allowRotate then return end
    self.angle = newAngle % (2 * math.pi)
 end
 

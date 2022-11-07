@@ -5,7 +5,7 @@ function setup()
    viewer.mode = STANDARD
    
    tc = TouchController()
-   testTC()
+   --testTC()
    canvas = PinchPanCanvas()
    tc:addInstance(canvas)
 end
