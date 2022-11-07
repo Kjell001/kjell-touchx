@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>TouchX</string>
+		<string>Gesture</string>
+		<string>TouchContext</string>
+		<string>TouchController</string>
+		<string>PinchPanCanvas</string>
+		<string>Main</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>kjellCodea:kjellStructures</string>
+	</array>
+</dict>
+</plist>
