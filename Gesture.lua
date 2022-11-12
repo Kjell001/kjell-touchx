@@ -3,6 +3,8 @@ Gesture = class()
 -- Represents a set of TouchX's and aggregated metrics. Serves as interface for
 -- dealing with multi-touch gestures. Managed by a TouchContext
 
+local _e1 = vec2(1, 0)
+
 function Gesture:init(touchxes)
    self.state = BEGAN
    self._touchxesSet = Set(touchxes)
@@ -19,9 +21,9 @@ function Gesture:contains(touchx)
 end
 
 function Gesture:getAngle()
-   local p1 = self._touchxes[1].pos
-   local p2 = self._touchxes[2].pos
-   return _e1:angleBetween(p2 - p1) % (2 * math.pi)
+   local pos1 = self._touchxes[1].pos
+   local pos2 = self._touchxes[2].pos
+   return _e1:angleBetween(pos2 - pos1) % (2 * math.pi)
 end
 
 function Gesture:update()

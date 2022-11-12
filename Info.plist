@@ -8,7 +8,7 @@
 		<string>Gesture</string>
 		<string>TouchContext</string>
 		<string>TouchController</string>
-		<string>PinchPanCanvas</string>
+		<string>Sponge</string>
 		<string>Main</string>
 	</array>
 	<key>Dependencies</key>

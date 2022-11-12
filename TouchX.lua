@@ -2,7 +2,7 @@ TouchX = class()
 
 -- An extension of the standard touch entity. Provides extra metrics and persists
 -- as an instance throughout the lifetime of a touch.
-local test = nil
+local _e1 = vec2(1, 0)
 
 function TouchX:init(touch)
    self.id = touch.id

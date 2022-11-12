@@ -1,6 +1,6 @@
 TouchContext = class()
 
--- Wrapper around instance, managing touches it's touches. Allows for defining
+-- Wrapper around an instance to manage associated touches. Allows for defining
 -- 'gestures', which provide an easy interface with multi-touch gestures.
 
 function TouchContext:init(instance)

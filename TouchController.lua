@@ -1,6 +1,3 @@
-
-_e1 = vec2(1, 0)
-
 TouchController = class()
 
 -- Facilitates managing touches in separated 'contexts'. Each context represents
@@ -10,7 +7,7 @@ TouchController = class()
 function TouchController:init()
    self.touchxes = {}
    self.contexts = {}
-   self.contextMap = {}
+   self.contextTouchxMap = {}
 end
 
 function TouchController:addInstance(instance)
@@ -28,7 +25,7 @@ end
 
 function TouchController:removeTouchX(touchx)
    self.touchxes[touchx.id] = nil
-   self.contextMap[touchx] = nil
+   self.contextTouchxMap[touchx] = nil
 end
 
 function TouchController:getTouchX(touch)
@@ -45,26 +42,26 @@ function TouchController:getTouchX(touch)
 end
 
 -- Manage Contexts
-function TouchController:assignContext(touchx, context)
-   local contexts = self.contextMap[touchx]
+function TouchController:assignTouchxContext(touchx, context)
+   local contexts = self.contextTouchxMap[touchx]
    table.insert(contexts, context)
 end
 
 function TouchController:getContexts(touchx)
    -- Fetch assigned context
-   local contexts = self.contextMap[touchx]
+   local contexts = self.contextTouchxMap[touchx]
    if contexts then return contexts end
    -- No assigned contexts, determine appropriate contexts from isTouched methods
-   self.contextMap[touchx] = {}
+   self.contextTouchxMap[touchx] = {}
    local isTouched, fallThrough
    for i, context in ipairs(self.contexts) do
       isTouched, fallThrough = context:isTouched(touchx)
       if isTouched then
-         self:assignContext(touchx, context)
+         self:assignTouchxContext(touchx, context)
          if not fallThrough then break end
       end
    end
-   return self.contextMap[touchx]
+   return self.contextTouchxMap[touchx]
 end
 
 function TouchController:update()
