@@ -104,7 +104,7 @@ function Sponge:isTouched(touchx)
    return true
 end
 
-function Sponge:touched(touchx, context)
+function Sponge:manipulate(touchx, context)
    -- Move with single touch
    if context.n <= 1 then
       if touchx.state == CHANGED then
@@ -134,7 +134,11 @@ function Sponge:touched(touchx, context)
       end
    end
    -- Define gesture if enough touches and no gesture exists
-   if context.n >= 2 and not self.gesture then
+   if context.n > 1 and not self.gesture then
       self:defineGesture(context)
    end
+end
+
+function Sponge:touched(touchx, context)
+   self:manipulate(touchx, context)
 end
